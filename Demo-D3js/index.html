@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop Music Pulse: A Radar View</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h2>Spotify Music Trend</h2>
+
+<div class="slider-container">
+    <input type="range" class="year-slider" id="yearSlider" min="2000" max="2023" value="2000" step="1">
+    <div class="slider-labels">
+        <span class="start-label">2000</span>
+        <span class="current-label" id="yearLabel">2000</span>
+        <span class="end-label">2023</span>
+    </div>
+</div>
+<!-- World Map SVG -->
+<svg id="worldMap" width="800" height="500"></svg>
+<svg id="colorKey" width="300" height="50"></svg>
+<!-- Radar Chart SVG -->
+<div class="genre-controls">
+    <label class="all-genres-label" data-genre="all-genres">
+        <div class="genre-icon all-genres-icon"></div>
+        All Genres
+    </label>
+    <label class="punk-rock-label" data-genre="punk-rock">
+        <input type="radio" id="punk-rock" name="genre" value="punk-rock" hidden>
+        <div class="genre-icon punk-rock-icon"></div>
+        Punk Rock
+    </label>
+    <label class="pop-label" data-genre="pop">
+        <input type="radio" id="pop" name="genre" value="pop" hidden>
+        <div class="genre-icon pop-icon"></div>
+        Pop
+    </label>
+    <label class="acoustic-label" data-genre="acoustic">
+        <input type="radio" id="acoustic" name="genre" value="acoustic" hidden>
+        <div class="genre-icon acoustic-icon"></div>
+        Acoustic
+    </label>
+</div>
+<svg id="radarChart" width="400" height="500" style="float: right;"></svg>
+<div id="ridge_chart"></div>
+<div id="parallel_chart"></div>
+
+
+<script src="parallel.js"></script>
+<script src="radarChart.js"></script>
+<script src="ridge.js"></script>
+<script src="worldMap.js"></script>
+
+</body>
+
+</html>
