@@ -18,10 +18,8 @@ function createParallelCoordinatesChart(dataset) {
       // Filter dataset to only include top 10 genres
       const filteredDataset = dataset.filter(d => topGenres.has(d.new_genre));
       const data = filteredDataset.map(d => dimensions.map(dimension => d[dimension]))
-    
-    //   const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
-    
-        // Define your own color codes here
+        
+      // Define your own color codes here
       const colorCodes = ['#2B4561', '#8F904E', '#7B928F', '#A1CCD9', '#D7CDBB', '#E5CEC6', '#EBC1C0', '#C99E8E', '#B08166', '#502F15'];
       const colorScale = d3.scaleOrdinal()
         .domain(topGenres)
