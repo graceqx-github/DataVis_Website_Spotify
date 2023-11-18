@@ -19,8 +19,15 @@ function createParallelCoordinatesChart(dataset) {
       const filteredDataset = dataset.filter(d => topGenres.has(d.new_genre));
       const data = filteredDataset.map(d => dimensions.map(dimension => d[dimension]))
     
-      const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+    //   const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
     
+        // Define your own color codes here
+      const colorCodes = ['#2B4561', '#8F904E', '#7B928F', '#A1CCD9', '#D7CDBB', '#E5CEC6', '#EBC1C0', '#C99E8E', '#B08166', '#502F15'];
+      const colorScale = d3.scaleOrdinal()
+        .domain(topGenres)
+        .range(colorCodes);
+
+
       // Use scalePoint because x-axis domain is discrete
       const xScale = d3.scalePoint()
         .range([margin.left, para_width - margin.right])
@@ -95,6 +102,11 @@ function createParallelCoordinatesChart(dataset) {
 
   }
   
+function randomSample(data, sampleSize) {
+    const shuffledData = data.slice().sort(() => 0.5 - Math.random());
+    return shuffledData.slice(0, sampleSize);
+}
+  
   // Load the data from the CSV file and call the function to create the chart
 d3.csv('../dataSource/dataset.csv').then(data => {
     console.log("data:",data);
@@ -110,7 +122,11 @@ d3.csv('../dataSource/dataset.csv').then(data => {
       d.acousticness = +d.acousticness;
     });
   
-    createParallelCoordinatesChart(data);
+// Call randomSample function to get a random subset of the data
+const sampleSize = 4000; // Choose the sample size here
+const sampledData = randomSample(data, sampleSize);
+
+    createParallelCoordinatesChart(sampledData);
   }).catch(error => {
     console.error('Error loading the data:', error);
   });
