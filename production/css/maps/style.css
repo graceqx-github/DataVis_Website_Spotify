@@ -2,7 +2,7 @@
 body {
     /* Placeholder for the background image path */
     background-color: white;
-    color: white;
+    color: rgb(0, 0, 0);
     font-family: Arial, sans-serif;
 }
 
@@ -90,8 +90,6 @@ body {
     /* Adjust based on your icon size */
 }
 
-
-
 /*Slider and world map*/
 #worldMap {
     background-color: white;
@@ -99,7 +97,7 @@ body {
 
 .slider-container {
     position: relative;
-    width: 60%;
+    width: 90%;
     margin: 20px auto;
     z-index: 10;
     /* Ensure the slider is above the map */
@@ -244,3 +242,6 @@ body {
     background: url('contrasticon.png');
     cursor: pointer;
 } */
+#tsne {
+    background-color: white;
+}

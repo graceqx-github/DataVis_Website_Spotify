@@ -14,36 +14,16 @@ var svg = d3.select("#ridge_chart")
 
 console.log("SVG Appended");
 //read data
-var categories = ['danceability', 'liveness', 'energy', 'valence', 'popularity', 'speechiness', 'acousticness'];
+var categories = ['danceability', 'liveness_norm', 'tempo_norm', 'energy', 'valence', 'loudness_norm', 'speechiness_norm', 'acousticness_norm'];
 var n = categories.length
 
-d3.csv("data/merged_data.csv").then(function(data) {
-    /*
-    // Compute dimension mins and maxes
-    const dimensionMins = {};
-    const dimensionMaxs = {};
-    categories.forEach(dim => {
-        dimensionMins[dim] = d3.min(data, d => +d[dim]);
-        dimensionMaxs[dim] = d3.max(data, d => +d[dim]);
-    });
-
-    // Normalize the data
-    const normalizedData = data.map(d => {
-        let normalized = {};
-        categories.forEach(dim => {
-            normalized[dim] = (d[dim] - dimensionMins[dim]) / (dimensionMaxs[dim] - dimensionMins[dim]);
-        });
-        return normalized;
-    });
-
-    console.log("Normalized Data:", normalizedData);
-    */
-
+d3.csv("../dataSource/dataset.csv").then(function(data) {
+    console.log("data:",data)
     // Compute the mean of each group
     allMeans = []
     for (i in categories){
         currentGroup = categories[i]
-        mean = d3.mean(data, function(d) { return d[currentGroup] })
+        mean = d3.mean(data, function(d) { return d[currentGroup] })+i*10
         allMeans.push(mean)
     }
 
@@ -103,7 +83,7 @@ d3.csv("data/merged_data.csv").then(function(data) {
 
 
     // Compute kernel density estimation for each column:
-    var kde = kernelDensityEstimator(kernelEpanechnikov(4), x.ticks(100)) // increase this 40 for more accurate density.
+    var kde = kernelDensityEstimator(kernelEpanechnikov(5), x.ticks(40)) // increase this 40 for more accurate density.
     var allDensity = []
     for (i = 0; i < n; i++) {
         key = categories[i]
