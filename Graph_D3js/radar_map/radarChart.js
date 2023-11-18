@@ -1,5 +1,5 @@
 // Constants and initializations
-const path= 'https://github.com/Team-Vizzer/DataVis_Website_Spotify/blob/master/Graph_D3js/dataSource/dataset.csv'
+const path= '../dataSource/dataset.csv'
 const radar_width = 400;
 const radar_height = 500;
 const radius = Math.min(radar_width, radar_height) / 2 - 20;
