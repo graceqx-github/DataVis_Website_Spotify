@@ -40,6 +40,8 @@
     "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
-    "gentelella": "^1.4.0"
+    "gentelella": "^1.4.0",
+    "ml-pca": "^4.1.1",
+    "pca-js": "^1.0.2"
   }
 }
