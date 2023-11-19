@@ -1,0 +1,29 @@
+# Load the dataset into a pandas DataFrame
+df = pd.read_csv('dataset.csv')
+
+# Sort the DataFrame by 'year' in descending order
+df['release_date'] = pd.to_datetime(df['release_date'], errors='coerce').dt.year
+df.sort_values(by='release_date', ascending=False, inplace=True)
+
+# Group the data by 'year' and 'genre' and count occurrences
+grouped_df = df.groupby(['release_date', 'new_genre']).size().reset_index(name='score')
+
+# Get the top 10 genres with the highest counts
+top_10_genres = grouped_df.groupby('new_genre')['score'].sum().nlargest(10).index
+
+# Filter the grouped data to keep only the top 10 genres
+grouped_df = grouped_df[grouped_df['new_genre'].isin(top_10_genres)]
+
+# Pivot the DataFrame to get 'genre' values as columns
+pivot_df = grouped_df.pivot(index='release_date', columns='new_genre', values='score').reset_index()
+
+# Fill NaN values with 0 (if a genre didn't appear in a particular year)
+pivot_df.fillna(0, inplace=True)
+
+# Rename the columns for clarity
+pivot_df.columns.name = None  # Remove the 'genre' label from columns
+pivot_df.columns = ['year'] + [f'{genre}' for genre in pivot_df.columns[1:]]
+
+# Print or save the resulting DataFrame
+print(pivot_df)
+pivot_df.to_csv('2.csv', index=False)
