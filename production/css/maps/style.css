@@ -71,6 +71,15 @@ body {
     background-image: url('images/sound.png');
 }
 
+
+.bubbles {
+    stroke-width: 2px;
+    stroke: white;
+}
+.bubbles:hover {
+    stroke: black;
+}
+
 #radarChart {
     float: left;
     margin-left: 60px;

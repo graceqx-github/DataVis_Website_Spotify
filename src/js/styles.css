@@ -13,7 +13,14 @@ h2 {
     color: blueviolet;
 }
 
-
+/* tsne */
+.bubbles {
+    stroke-width: 2px;
+    stroke: white;
+  }
+  .bubbles:hover {
+    stroke: black;
+  }
 
 /*radar*/
 .radar-circle {
