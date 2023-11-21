@@ -1,46 +1,111 @@
-const svg_area = d3.select("#area");
 
-const data_area = [
-  { year: "2000", A: 10, B: 20, C: 30 },
-  { year: "2001", A: 20, B: 30, C: 40 },
-  { year: "2002", A: 30, B: 40, C: 50 },
-  { year: "2003", A: 40, B: 50, C: 60 },
-  { year: "2004", A: 30, B: 65, C: 60 },
-  { year: "2005", A: 50, B: 60, C: 70 },
-  { year: "2006", A: 50, B: 60, C: 70 },
-  { year: "2007", A: 40, B: 20, C: 80 },
-  { year: "2008", A: 40, B: 50, C: 80 },
-];
+// set the dimensions and margins of the graph
+var margin_area = {top: 20, right: 30, bottom: 0, left: 50},
+    width_area = 1510 - margin_area.left - margin_area.right,
+    height_area = 400 - margin_area.top - margin_area.bottom;
 
-const stack = d3.stack().keys(["A", "B", "C"]);
-const series = stack(data_area);
-
-const x = d3.scaleBand()
-  .domain(data_area.map(d => d.year))
-  .range([0, 1570])
-  .padding(0.3);
-
-const y = d3.scaleLinear()
-  .domain([0, d3.max(series, d => d3.max(d, d => d[1]))])
-  .range([400, 0]);
-
-const color = d3.scaleOrdinal()
-  .domain(["A", "B", "C"])
-  .range(["#6baed6", "#3182bd", "#08519c"]);
-
-const area = d3.area()
-  .x(d => x(d.data.year))
-  .y0(d => y(d[0]))
-  .y1(d => y(d[1]));
-
-const groups = svg_area.selectAll("g")
-  .data(series)
-  .enter()
+// append the svg object to the body of the page
+var svgArea = d3.select("#area")
+  .append("svg")
+    .attr("width", width_area + margin_area.left + margin_area.right)
+    .attr("height", height_area + margin_area.top + margin_area.bottom)
   .append("g")
-  .attr("fill", d => color(d.key));
+    .attr("transform",
+          "translate(" + margin_area.left + "," + margin_area.top + ")");
 
-groups.selectAll("path")
-  .data(d => [d])
-  .enter()
-  .append("path")
-  .attr("d", area);
+// Parse the Data
+d3.csv("2.csv").then(function(data) {
+
+  // List of groups = header of the csv files
+  const keys = data.columns.slice(1)
+
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain(d3.extent(data, function(d) { return d.year; }))
+    .range([ 0, width_area ]);
+  svgArea.append("g")
+    .attr("transform", "translate(0," + height_area*0.8 + ")")
+    .call(d3.axisBottom(x).tickSize(-height_area*.7).tickValues([2000,2002,2004, 2006,2008, 2010,2012,2014,2016, 2018, 2020,2022]))
+    .select(".domain").remove()
+  // Customization
+  svgArea.selectAll(".tick line").attr("stroke", "#dedede")
+
+  // Add X axis label:
+  svgArea.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width_area)
+      .attr("y", height_area-30 )
+      .text("Time (year)");
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([-2500, 2000])
+    .range([ height_area, 0 ]);
+
+// Define your custom color array
+  var customColors = ['#2B4561', '#8F904E', '#7B928F', '#A1CCD9', '#D7CDBB', '#E5CEC6', '#EBC1C0', '#C99E8E', '#B08166', '#502F15'];
+
+// Create a scale using the custom color array
+  var color = d3.scaleOrdinal()
+    .domain(keys) // Assuming 'keys' is the array of unique categories/keys
+    .range(customColors); // Use your custom color array as the range
+
+
+  // color palette
+  //var color = d3.scaleOrdinal()
+  //  .domain(keys)
+  //  .range(d3.schemeDark2);
+  //var color = ['#2B4561', '#8F904E', '#7B928F', '#A1CCD9', '#D7CDBB', '#E5CEC6', '#EBC1C0', '#C99E8E', '#B08166', '#502F15'];
+
+  //stack the data?
+  var stackedData = d3.stack()
+    .offset(d3.stackOffsetSilhouette)
+    .keys(keys)
+    (data)
+
+  // create a tooltip
+  var Tooltip = svgArea
+    .append("text")
+    .attr("x", 0)
+    .attr("y", 0)
+    .style("opacity", 0)
+    .style("font-size", 17)
+
+  // Three function that change the tooltip when user hover / move / leave a cell
+  var mouseover = function(event,d) {
+    Tooltip.style("opacity", 1)
+    d3.selectAll(".myArea").style("opacity", .2)
+    d3.select(this)
+      .style("stroke", "black")
+      .style("opacity", 1)
+  }
+  var mousemove = function(event,d,i) {
+    // grp = keys[i]
+    grp=d.key
+    Tooltip.text(grp)
+  }
+  var mouseleave = function(event,d) {
+    Tooltip.style("opacity", 0)
+    d3.selectAll(".myArea").style("opacity", 1).style("stroke", "none")
+   }
+
+  // Area generator
+  var area = d3.area()
+    .x(function(d) { return x(d.data.year); })
+    .y0(function(d) { return y(d[0]); })
+    .y1(function(d) { return y(d[1]); })
+
+  // Show the areas
+  svgArea
+    .selectAll("mylayers")
+    .data(stackedData)
+    .enter()
+    .append("path")
+      .attr("class", "myArea")
+      .style("fill", function(d) { return color(d.key); })
+      .attr("d", area)
+      .on("mouseover", mouseover)
+      .on("mousemove", mousemove)
+      .on("mouseleave", mouseleave)
+
+})

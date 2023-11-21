@@ -1,18 +1,18 @@
-    // set the dimensions and margins of the graph
-    const margin = {top: 10, right: 20, bottom: 30, left: 70},
-        width = 550 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
-        // width = 500,
-        // height =300;
+    // set the dimensions and margin_ts of the graph
+    const margin_t = {top: 15, right: 20, bottom: 25, left: 70},
+        width_t = 550 - margin_t.left - margin_t.right,
+        height_t = 400 - margin_t.top - margin_t.bottom;
+        // width_t = 500,
+        // height_t =300;
     
     // append the svg object to the body of the page
     
-    const svg = d3.select("#tsne")
+    const svgT = d3.select("#tsne")
       .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("width", width_t + margin_t.left + margin_t.right)
+        .attr("height", height_t + margin_t.top + margin_t.bottom)
       .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
+        .attr("transform", `translate(${margin_t.left},${margin_t.top})`);
     
     //Read the data
     d3.csv("./new_dataset.csv").then( function(data) {
@@ -20,16 +20,16 @@
         // Add X axis
         const x = d3.scaleLinear()
             .domain([-0.05, 0.05])
-            .range([ 0, width ]);
-        svg.append("g")
-            .attr("transform", `translate(0, ${height})`)
+            .range([ 0, width_t ]);
+        svgT.append("g")
+            .attr("transform", `translate(0, ${height_t})`)
             .call(d3.axisBottom(x));
         
         // Add Y axis
         const y = d3.scaleLinear()
             .domain([-0.035, 0.015])
-            .range([ height, 0]);
-        svg.append("g")
+            .range([ height_t, 0]);
+        svgT.append("g")
             .call(d3.axisLeft(y));
         
         // Add a scale for bubble size
@@ -37,10 +37,11 @@
             .domain([50, 4000])
             .range([3, 60]);
         
+        const colorCodes = ['#2B4561', '#8F904E', '#7B928F', '#A1CCD9', '#D7CDBB', '#E5CEC6', '#EBC1C0', '#C99E8E', '#B08166', '#502F15'];
         // Add a scale for bubble color
         var myColor = d3.scaleOrdinal()
             .domain(['world-music', 'electronic', 'rock', 'metal', 'j-pop', 'kids', 'honky-tonk', 'indie', 'soundtracks', 'reggae'])
-            .range(d3.schemeSet3);
+            .range(colorCodes);
 
         // -1- Create a tooltip div that is hidden by default:
         var tooltip = d3.select("body")
@@ -59,7 +60,7 @@
             .duration(200)
             tooltip
             .style("opacity", 0.3)
-            .html(d.new_genre +'\n'+ d.radius)
+            .html(d.new_genre +': '+ d.radius)
             .style("left", (event.x) + "px")
             .style("top", (event.y)/2+40 + "px")
         }
@@ -77,7 +78,7 @@
         }
         
         // Add dots
-        svg.append('g')
+        svgT.append('g')
             .selectAll("dot")
             .data(data)
             .join("circle")
