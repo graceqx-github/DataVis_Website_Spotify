@@ -48,6 +48,10 @@ function generateData(){
         generateBaseForYear(year);
         generateHeatmapDataForYear(year);
     }
+    return new Promise((resolve, reject) => {
+        // Code of the first function
+        resolve(); // Resolve the promise once the first function finishes
+      });
 }
 
 
@@ -64,8 +68,9 @@ const colorScale = d3.scaleLinear()
 // World Map
 const svgMap = d3.select("#worldMap");
 
-generateData()
 
+generateData().then(()=>{
+    
 d3.json("https://d3js.org/world-110m.v1.json").then(world => {
     const projection = d3.geoMercator().fitSize([900, 700], topojson.feature(world, world.objects.countries)).clipExtent([[0,0], [900, 700]]);
     const path = d3.geoPath().projection(projection);
@@ -97,6 +102,8 @@ d3.json("https://d3js.org/world-110m.v1.json").then(world => {
         updateHeatmap(selectedYear);
     });
 });
+
+})
 
 
 
