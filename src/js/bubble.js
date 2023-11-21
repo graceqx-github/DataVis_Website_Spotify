@@ -3,9 +3,9 @@ let sorted_res = []
 let result = []
 let pop_dict = []
 maxRadius=80
-padding=10
-const bubbleHeight = 250
-const bubbleWidth = 850
+padding=20
+const bubbleHeight = 200
+const bubbleWidth = 990
 
 function generateBubble(genre) {
   d3.csv("dataset.csv").then(function(dataset) {

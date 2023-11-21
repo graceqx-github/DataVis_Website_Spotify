@@ -1,5 +1,5 @@
 // Set the dimensions and margins of the graph
-var margin = {top: 130, right: 50, bottom: 70, left: 120}, // Increased top margin
+var margin = {top: 130, right: 50, bottom: 30, left: 120}, // Increased top margin
     width_ridge = 480 - margin.left - margin.right,
     height_ridge = 400 - margin.top - margin.bottom;
 
@@ -12,6 +12,7 @@ var svg = d3.select("#ridgeChart")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var categories = ['danceability', 'liveness_norm', 'tempo_norm', 'energy', 'valence', 'loudness_norm', 'speechiness_norm', 'acousticness_norm'];
+const radarName = ['danceability', 'liveness', 'tempo', 'energy', 'valence', 'loudness', 'speechiness', 'acousticness'];
 var n = categories.length;
 var selectedGenre = "world-music";
 
