@@ -106,7 +106,7 @@ function updateRidgePlot(selectedYear, selectedGenre) {
 }
 
 // Initial plot
-updateRidgePlot("2020", "world-music"); // Default year and genre
+updateRidgePlot("2000", "world-music"); // Default year and genre
 
 // Event listener for the time slider
 document.getElementById("yearSlider").addEventListener("input", function(event) {
