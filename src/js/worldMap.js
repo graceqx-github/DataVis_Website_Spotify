@@ -2,6 +2,7 @@
 let allYearData = {};
 let yearData={};
 
+
 function generateBaseForYear(year) {
     const yearData = {};
     d3.json("https://d3js.org/world-110m.v1.json").then(world => {
@@ -14,12 +15,8 @@ function generateBaseForYear(year) {
 
 function generateHeatmapDataForYear(year) {
     datasets = []
-    // d3.csv("dataset.csv")
-    //   .then(function(data) {
-    // });
-
     d3.csv("dataset.csv").then(function(dataset) {
-        kpop_data = dataset.filter((obj) => obj.new_genre==="world-music")
+        kpop_data = dataset.filter((obj) => obj.new_genre===new_genre)
         .filter((obj)=>obj.release_date.split("/")[2]===year.toString());
         groupedData = kpop_data.reduce((acc, obj) => {
             key = obj.Numeric;
@@ -46,11 +43,14 @@ function generateHeatmapDataForYear(year) {
 }
 
 
-
-for (let year = 2000; year <= 2023; year++) {
-    generateBaseForYear(year);
-    generateHeatmapDataForYear(year);
+function generateData(){
+    for (let year = 2000; year <= 2023; year++) {
+        generateBaseForYear(year);
+        generateHeatmapDataForYear(year);
+    }
 }
+
+
 
 function customColor(t) {
     return d3.interpolateBlues(t * 0.8 + 0.3);  // This narrows the color range
@@ -62,6 +62,9 @@ const colorScale = d3.scaleSequential(customColor)
 
 // World Map
 const svgMap = d3.select("#worldMap");
+
+generateData()
+
 d3.json("https://d3js.org/world-110m.v1.json").then(world => {
     const projection = d3.geoMercator().fitSize([900, 700], topojson.feature(world, world.objects.countries)).clipExtent([[0,0], [900, 700]]);
     const path = d3.geoPath().projection(projection);
@@ -93,6 +96,8 @@ d3.json("https://d3js.org/world-110m.v1.json").then(world => {
         updateHeatmap(selectedYear);
     });
 });
+
+
 
 
 //Key

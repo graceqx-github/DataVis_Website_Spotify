@@ -12,7 +12,8 @@ const radarGenreColors = {
 };
 
 // Current genre selection
-let currentGenre = "metal"; // Default genre
+// let currentGenre = "metal"; // Default genre
+new_genre
 
 // Initial Setup for Radar Chart
 // Drawing radar circles
@@ -92,13 +93,13 @@ const drawRadarForGenre = (year, genre) => {
 document.getElementById("yearSlider").addEventListener("input", function(event) {
     const selectedYear = event.target.value;
     document.getElementById("yearLabel").innerText = selectedYear;
-    if (currentGenre === "all-genres") {
+    if (new_genre === "all-genres") {
         drawAllGenres(selectedYear);
     } else {
-        drawRadarForGenre(selectedYear, currentGenre);
+        drawRadarForGenre(selectedYear, new_genre);
     }
 });
 
 
 // Initial radar chart for a default year and genre
-drawRadarForGenre("2000", currentGenre);
+drawRadarForGenre("2000", new_genre);

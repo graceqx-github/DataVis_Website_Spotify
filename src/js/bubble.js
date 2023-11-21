@@ -29,7 +29,7 @@ function generateBubble(genre) {
 }
 
 
-generateBubble("rock")
+generateBubble(new_genre)
 
 
 function drawBubble(genre) {
