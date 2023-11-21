@@ -1,7 +1,7 @@
     // set the dimensions and margins of the graph
-    const margin = {top: 10, right: 20, bottom: 30, left: 50},
-        width = 500 - margin.left - margin.right,
-        height = 420 - margin.top - margin.bottom;
+    const margin = {top: 10, right: 20, bottom: 30, left: 70},
+        width = 550 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
         // width = 500,
         // height =300;
     
@@ -43,7 +43,7 @@
             .range(d3.schemeSet3);
 
         // -1- Create a tooltip div that is hidden by default:
-        var tooltip = d3.select("#my_dataviz")
+        var tooltip = d3.select("body")
             .append("div")
             .style("opacity", 0)
             .attr("class", "tooltip")
@@ -53,21 +53,21 @@
             .style("color", "white")
             
         const showTooltip = function(event, d) {
-            const [x, y] = d3.pointer(event);
+            // const [x, y] = d3.pointer(event);
             tooltip
             .transition()
             .duration(200)
             tooltip
             .style("opacity", 0.3)
-            .html("Country: " + d.new_genre)
-            .style("left", (event.x)/2 + "px")
-            .style("top", (event.y)/2+30 + "px")
+            .html(d.new_genre +'\n'+ d.radius)
+            .style("left", (event.x) + "px")
+            .style("top", (event.y)/2+40 + "px")
         }
         const moveTooltip = function(event, d) {
-            const [x, y] = d3.pointer(event);
+            // const [x, y] = d3.pointer(event);
             tooltip
-            .style("left", (event.x)/2 + "px")
-            .style("top", (event.y)/2+30 + "px")
+            .style("left", (event.x) + "px")
+            .style("top", (event.y)/2+40 + "px")
         }
         const hideTooltip = function(event, d) {
             tooltip
