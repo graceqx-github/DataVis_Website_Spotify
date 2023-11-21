@@ -137,11 +137,12 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <svg id="bubble" width="500" height="200"></svg>
+                    <svg width="500" height="200"></svg>
                   </div>
                 </div>
               </div>
-              <div class="col-md-12 col-sm-12" style="text-align:center;">
+
+              <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Map</h2>
@@ -154,7 +155,7 @@
               </div>
             </div>
 
-            <!-- t-sne chart-->
+            <!-- radar chart-->
             <div class="col-md-3 col-sm-3  ">
               <div class="x_panel">
                 <div class="x_title">
@@ -162,12 +163,19 @@
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                  <svg width="500" height="900"></svg>
+                  <svg id= "ridgeChart" width="400" height="400"></svg>
+                  
+                   <!-- New row inserted here -->
+                  <div class="row">
+                    <div class="col-md-12">
+                        <!-- Your content for the new row goes here -->
+                        <svg id= "radarChart" width="400" height="500"></svg>
+                    </div>    
                 </div>
               </div>
             </div>
 
-            <div class="col-md-12 col-sm-12">
+            <div class="col-md-12">
               <div class="slider-container">
                 <input type="range" class="year-slider" id="yearSlider" min="2000" max="2023" value="2000" step="1">
                 <div class="slider-labels">
