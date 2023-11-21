@@ -75,7 +75,11 @@ const drawRadarForGenre = (year, genre) => {
         const lineGenerator = d3.line().curve(d3.curveLinearClosed);
         const averagePoints = radarDimensions.map((dim, i) => {
             const value = averages[dim];
+<<<<<<< HEAD
             const x = radarWidth / 2-20 + radarRadius * value * Math.cos(radarAngleSlice * i - Math.PI / 2);
+=======
+            const x = radarWidth / 2 + radarRadius * value * Math.cos(radarAngleSlice * i - Math.PI / 2);
+>>>>>>> e208cd9c183fc7ebac4f608362fc6b4c9fbbcd7a
             const y = radarHeight / 2 + radarRadius * value * Math.sin(radarAngleSlice * i - Math.PI / 2);
             return [x, y];
         });
