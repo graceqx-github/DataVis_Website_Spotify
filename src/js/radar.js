@@ -8,17 +8,11 @@ const radarDimensions = ['danceability', 'liveness_norm', 'tempo_norm', 'energy'
 const radarName = ['danceability', 'liveness', 'tempo', 'energy', 'valence', 'loudness', 'speechiness', 'acousticness'];
 const radarAngleSlice = Math.PI * 2 / radarDimensions.length;
 const radarGenreColors = {
-    "metal": "rgb(187, 215, 239,0.7)",
-    "pop": "rgb(136, 250, 132,0.7)",
-    "acoustic": "rgb(236, 108, 108,0.7)",
-    'world-music':"rgb(229, 206, 198)"
+    "metal": "rgb(229, 206, 198)",
 };
-const radarStrokeColors = {
-    'world-music':"rgb(239, 216, 208)"
-}
 
 // Current genre selection
-let currentGenre = "world-music"; // Default genre
+let currentGenre = "metal"; // Default genre
 
 // Initial Setup for Radar Chart
 // Drawing radar circles
@@ -75,11 +69,7 @@ const drawRadarForGenre = (year, genre) => {
         const lineGenerator = d3.line().curve(d3.curveLinearClosed);
         const averagePoints = radarDimensions.map((dim, i) => {
             const value = averages[dim];
-<<<<<<< HEAD
             const x = radarWidth / 2-20 + radarRadius * value * Math.cos(radarAngleSlice * i - Math.PI / 2);
-=======
-            const x = radarWidth / 2 + radarRadius * value * Math.cos(radarAngleSlice * i - Math.PI / 2);
->>>>>>> e208cd9c183fc7ebac4f608362fc6b4c9fbbcd7a
             const y = radarHeight / 2 + radarRadius * value * Math.sin(radarAngleSlice * i - Math.PI / 2);
             return [x, y];
         });

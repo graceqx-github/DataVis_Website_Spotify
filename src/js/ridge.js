@@ -12,9 +12,8 @@ var svg = d3.select("#ridgeChart")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var categories = ['danceability', 'liveness_norm', 'tempo_norm', 'energy', 'valence', 'loudness_norm', 'speechiness_norm', 'acousticness_norm'];
-const radarName = ['danceability', 'liveness', 'tempo', 'energy', 'valence', 'loudness', 'speechiness', 'acousticness'];
 var n = categories.length;
-var selectedGenre = "world-music";
+var selectedGenre = "metal";
 
 // Function to update the ridge plot
 function updateRidgePlot(selectedYear, selectedGenre) {
