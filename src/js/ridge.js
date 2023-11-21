@@ -61,9 +61,10 @@ function updateRidgePlot(selectedYear, new_genre) {
         console.log("Y Axis Added");
 
         // Create a color scale
-        var myColor = d3.scaleSequential()
-            .domain([0, 100])
-            .interpolator(d3.interpolateViridis);
+        var myColor = d3.scaleLinear()
+        .domain([0, 100])
+        .interpolate(d3.interpolateHcl)
+        .range([d3.rgb(nonColor), d3.rgb(fulColor)])
 
         // Compute histograms for each category
         var histograms = categories.map(function(category) {

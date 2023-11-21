@@ -8,7 +8,7 @@ const radarDimensions = ['danceability', 'liveness_norm', 'tempo_norm', 'energy'
 const radarName = ['danceability', 'liveness', 'tempo', 'energy', 'valence', 'loudness', 'speechiness', 'acousticness'];
 const radarAngleSlice = Math.PI * 2 / radarDimensions.length;
 const radarGenreColors = {
-    "metal": "rgb(229, 206, 198)",
+    "electronic": "#A1CCD9",
 };
 
 // Current genre selection
@@ -50,7 +50,7 @@ radarDimensions.forEach((dim, i) => {
 console.error("initialize");
 // Helper function to update and draw the radar for a specific year and genre
 const drawRadarForGenre = (year, genre) => {
-    radarSvg.selectAll(".polygon-genre").remove(); // Clear existing chart
+    // radarSvg.selectAll(".polygon-genre").remove(); // Clear existing chart
 
     d3.csv(radarPath).then(data => {
         // Filter data based on the selected year and genre
@@ -80,12 +80,12 @@ const drawRadarForGenre = (year, genre) => {
         radarSvg.append("path")
             .attr("d", lineGenerator(averagePoints))
             .attr("class", "polygon-genre")
-            .attr("fill", radarGenreColors[genre])
-            .attr("stroke", d3.rgb(radarGenreColors[genre]).darker())
-            .attr("stroke-width", 5)
+            .attr("fill", midColor)
+            .attr("stroke", d3.rgb(midColor))
+            .attr("stroke-width", 2)
             .style("opacity", 0.7)
             .transition()
-            .duration(500);
+            .duration(100);
     });
 };
 

@@ -52,13 +52,14 @@ function generateData(){
 
 
 
-function customColor(t) {
-    return d3.interpolateBlues(t * 0.8 + 0.3);  // This narrows the color range
-  }
+
+
 
 // Define a color scale for the heatmap
-const colorScale = d3.scaleSequential(customColor)
-    .domain([0, 1]);
+const colorScale = d3.scaleLinear()
+.domain([0, 1])
+.interpolate(d3.interpolateHcl)
+.range([d3.rgb(nonColor), d3.rgb(fulColor).darker()])
 
 // World Map
 const svgMap = d3.select("#worldMap");
