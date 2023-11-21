@@ -63,7 +63,7 @@ const colorScale = d3.scaleSequential(customColor)
 // World Map
 const svgMap = d3.select("#worldMap");
 d3.json("https://d3js.org/world-110m.v1.json").then(world => {
-    const projection = d3.geoMercator().fitSize([800, 700], topojson.feature(world, world.objects.countries)).clipExtent([[0,0], [800, 500]]);;
+    const projection = d3.geoMercator().fitSize([900, 700], topojson.feature(world, world.objects.countries)).clipExtent([[0,0], [900, 700]]);
     const path = d3.geoPath().projection(projection);
 
     const countries = svgMap.selectAll("path")
