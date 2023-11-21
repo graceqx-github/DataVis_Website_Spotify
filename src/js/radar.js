@@ -1,5 +1,5 @@
 // Constants and initializations for Radar Chart
-const radarPath = 'data/spotify_dataset_1_bruce.csv'; // Adjust the path to your dataset
+const radarPath = 'dataset.csv'; // Adjust the path to your dataset
 const radarWidth = 400;
 const radarHeight = 500;
 const radarRadius = Math.min(radarWidth, radarHeight) / 2 - 20;
@@ -72,7 +72,7 @@ const drawRadarForGenre = (year, genre) => {
         radarDimensions.forEach(dim => {
             averages[dim] = d3.mean(filteredData, d => +d[dim]);
         });
-        console.log("Averages:", averages);
+        // console.log("Averages:", averages);
 
         // Compute normalized average coordinates for selected genre
         const lineGenerator = d3.line().curve(d3.curveLinearClosed);
