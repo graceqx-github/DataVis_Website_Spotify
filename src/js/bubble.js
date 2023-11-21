@@ -4,6 +4,8 @@ let result = []
 let pop_dict = []
 maxRadius=80
 padding=10
+const bubbleHeight = 250
+const bubbleWidth = 850
 
 function generateBubble(genre) {
   d3.csv("dataset.csv").then(function(dataset) {
@@ -32,7 +34,7 @@ generateBubble("rock")
 
 function drawBubble(genre) {
   const svgBubble = d3.select("#bubble");
-  svgBubble.attr("width", 1000).attr("height", 250)
+  svgBubble.attr("width", bubbleWidth).attr("height", bubbleHeight)
   const newCircle = circleGenerator(maxRadius);
 for (let index = 0; index < 40; index++) {
   const circle = newCircle(sorted_res[index]["popularity"]);
@@ -67,8 +69,8 @@ function circleGenerator(maxRadius) {
     let bestX, bestY, bestDistance = 0;
 
     for (var i = 0; i < k; ++i) {
-      const x = Math.random() * width;
-      const y = Math.random() * height;
+      const x = Math.random() * bubbleWidth;
+      const y = Math.random() * bubbleHeight;
       const rx1 = x - k * 2;
       const rx2 = x + k * 2;
       const ry1 = y - k * 2;
