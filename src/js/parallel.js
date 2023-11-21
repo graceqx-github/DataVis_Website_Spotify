@@ -1,6 +1,7 @@
 
 function createParallelCoordinatesChart(dataset) {
-  const para_width = 850;
+  // const para_width = 850;
+  const para_width = 1510;
   const para_height = 400;
   const svgPara = d3.select('#parallel');
 
