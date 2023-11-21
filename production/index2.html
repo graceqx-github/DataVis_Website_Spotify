@@ -155,16 +155,22 @@
               </div>
             </div>
 
-            <!-- t-sne chart-->
-            <div class="col-md-3 col-sm-3  ">
+            <!-- radar chart-->
+            <div class="col-md-3 col-sm-3">
               <div class="x_panel">
-                <div class="x_title">
-                  <h2>Radar Graph</h2>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <!-- <svg id='radar' width="500" height="900"></svg> -->
-                </div>
+                  <div class="x_title">
+                      <h2>Radar Graph</h2>
+                      <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                      <svg id="radarChart" width="400" height="400"></svg> <!-- Adjusted size -->
+                  </div>
+                  <!-- New row for another chart -->
+                  <div class="row">
+                      <div class="col-md-12">
+                          <svg id="ridgeChart" width="400" height="400"></svg> <!-- Adjusted size -->
+                      </div>    
+                  </div>
               </div>
             </div>
 
@@ -240,6 +246,7 @@
     <script src="../src/js/bubble.js"></script>
     <script src="../src/js/radar.js"></script>
     <script src="../src/js/parallel.js"></script>
+    <script src="../src/js/ridge.js"></script>
 
     <!-- <script src="../src/js/pie.js"></script> -->
 

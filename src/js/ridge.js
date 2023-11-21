@@ -4,7 +4,7 @@ var margin = {top: 130, right: 50, bottom: 70, left: 120}, // Increased top marg
     height_ridge = 400 - margin.top - margin.bottom;
 
 // Append the svg object to the body of the page
-var svg = d3.select("#ridge_chart")
+var svg = d3.select("#ridgeChart")
   .append("svg")
     .attr("width", width_ridge + margin.left + margin.right)
     .attr("height", height_ridge + margin.top + margin.bottom)
@@ -17,7 +17,7 @@ var selectedGenre = "world-music";
 
 // Function to update the ridge plot
 function updateRidgePlot(selectedYear, selectedGenre) {
-    d3.csv("../dataSource/dataset.csv").then(function(data) {
+    d3.csv("dataset.csv").then(function(data) {
         // Filter data by year and genre
         var filteredData = data.filter(function(d) {
             var year = d.release_date.split('/')[2];
