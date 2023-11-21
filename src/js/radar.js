@@ -7,7 +7,7 @@ const radarSvg = d3.select("#radarChart");
 const radarDimensions = ['danceability', 'liveness_norm', 'tempo_norm', 'energy', 'valence', 'loudness_norm', 'speechiness_norm', 'acousticness_norm'];
 const radarAngleSlice = Math.PI * 2 / radarDimensions.length;
 const radarGenreColors = {
-    "metal": "rgb(187, 215, 239,0.7)",
+    "punk": "rgb(187, 215, 239,0.7)",
     "pop": "rgb(136, 250, 132,0.7)",
     "acoustic": "rgb(236, 108, 108,0.7)",
     'world-music':"rgb(229, 206, 198)"
