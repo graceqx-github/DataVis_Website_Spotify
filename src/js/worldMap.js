@@ -159,4 +159,4 @@ svgKey.append("text")
     .attr("y", 40)
     .attr("fill", "#000")
     .attr("text-anchor", "middle")
-    .text("Artists Popularity");
+    .text("Music Productivity Index");
