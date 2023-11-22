@@ -32,7 +32,12 @@
   <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
   <!-- d3js -->
   <!-- <script src="https://d3js.org/d3.v6.min.js"></script> -->
-
+  <script>
+    var new_genre = "metal"
+    var fulColor = "#306373"
+    var midColor = '#A1CCD9'
+    var nonColor = "#A9CFDB"
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pop Music Pulse: A Radar View</title>
@@ -71,8 +76,10 @@
                 <li><a><i class="fa fa-music" aria-hidden="true"></i> Genre Specific <span
                       class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="index2.html">K-Pop</a></li>
-                    <li><a href="hiphop.html">Hip-Hop</a></li>
+                    <li><a href="index2.html">Metal</a></li>
+                    <li><a href="index3.html">Electronic</a></li>
+                    <li><a href="index4.html">Kids</a></li>
+                    <li><a href="index5.html">Reggae</a></li>
                   </ul>
                 </li>
               </ul>
@@ -128,7 +135,7 @@
 
           <div class="row">
             <!-- Parallel Graph -->
-            <div class="col-md-9 col-sm-9  ">
+            <div class="col-md-8 col-sm-8  ">
               <!-- area graph-->
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
@@ -137,7 +144,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <svg width="500" height="200"></svg>
+                    <svg width="990" height="200"></svg>
                   </div>
                 </div>
               </div>
@@ -149,28 +156,23 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <svg id="worldMap" width="850" height="600"></svg>
+                    <!-- <svg id="parallel" width="700" height="300"></svg> -->
+                    <svg id="worldMap" width="990" height="500"></svg>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- radar chart-->
-            <div class="col-md-3 col-sm-3  ">
+            <!-- t-sne chart-->
+            <div class="col-md-4 col-sm-4  ">
               <div class="x_panel">
                 <div class="x_title">
                   <h2>Radar Graph</h2>
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                  <svg id= "ridgeChart" width="400" height="400"></svg>
-                  
-                   <!-- New row inserted here -->
-                  <div class="row">
-                    <div class="col-md-12">
-                        <!-- Your content for the new row goes here -->
-                        <svg id= "radarChart" width="400" height="500"></svg>
-                    </div>    
+                  <svg id='radarChart' width="500" height="400"></svg>
+                  <svg id='ridgeChart' width="500" height="400"></svg>
                 </div>
               </div>
             </div>
@@ -239,13 +241,16 @@
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
+    <!-- <script src="../src/js/ridge.js"></script> -->
+    <!-- <script src="../src/js/parallel.js"></script> -->
+    <!-- <script src="../src/js/tsne.js"></script> -->
     <script src="../src/js/ridge.js"></script>
-    <script src="../src/js/parallel.js"></script>
-    <script src="../src/js/tsne.js"></script>
-    <script src="../src/js/area.js"></script>
     <script src="../src/js/worldMap.js"></script>
     <script src="../src/js/bubble.js"></script>
     <script src="../src/js/radar.js"></script>
+    <script src="../src/js/parallel.js"></script>
+
+
     <!-- <script src="../src/js/pie.js"></script> -->
 
 </body>

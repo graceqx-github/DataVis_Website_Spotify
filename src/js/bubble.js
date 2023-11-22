@@ -2,8 +2,10 @@
 let sorted_res = []
 let result = []
 let pop_dict = []
-maxRadius=80
-padding=10
+maxRadius=100
+padding=20
+const bubbleHeight = 200
+const bubbleWidth = 990
 
 function generateBubble(genre) {
   d3.csv("dataset.csv").then(function(dataset) {
@@ -27,20 +29,23 @@ function generateBubble(genre) {
 }
 
 
-generateBubble("rock")
+generateBubble(new_genre)
 
 
 function drawBubble(genre) {
   const svgBubble = d3.select("#bubble");
-  svgBubble.attr("width", 1000).attr("height", 250)
+  svgBubble.attr("width", bubbleWidth).attr("height", bubbleHeight)
   const newCircle = circleGenerator(maxRadius);
-for (let index = 0; index < 40; index++) {
-  const circle = newCircle(sorted_res[index]["popularity"]);
+for (let index = 0; index < 30; index++) {
+  
+  max_value = d3.max(sorted_res, function(d) { return d.popularity; })
+
+  const circle = newCircle(maxRadius/max_value*sorted_res[index]["popularity"]);
   if (circle === null) continue;
 
- let color_scheme = d3.hsl("steelblue")
- color_scheme.s = (40-index)/40 
- color_scheme.opacity = (40-index)/40 
+ let color_scheme = d3.rgb(fulColor)
+ color_scheme.s = (30-index)/30 
+ color_scheme.opacity = (30-index)/30 
  
  svgBubble.append("circle")
       .attr("cx", circle[0])
@@ -49,12 +54,13 @@ for (let index = 0; index < 40; index++) {
       .attr("fill", color_scheme)
     .transition()
       .attr("r", circle[2])
- if (circle[2] < 30) continue;
+ if (circle[2] < 40) continue;
  else{
   svgBubble.append("text")
   .attr("x", circle[0]) // Set the x position
   .attr("y", circle[1]) // Set the y position
   .attr("text-anchor", "middle")
+  .attr("fill", "white")
   .text(sorted_res[index]["artists"]).transition()
  }
 
@@ -67,8 +73,8 @@ function circleGenerator(maxRadius) {
     let bestX, bestY, bestDistance = 0;
 
     for (var i = 0; i < k; ++i) {
-      const x = Math.random() * width;
-      const y = Math.random() * height;
+      const x = Math.random() * bubbleWidth;
+      const y = Math.random() * bubbleHeight;
       const rx1 = x - k * 2;
       const rx2 = x + k * 2;
       const ry1 = y - k * 2;
