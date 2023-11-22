@@ -12,17 +12,16 @@ var svg = d3.select("#ridgeChart")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var categories = ['danceability', 'liveness_norm', 'tempo_norm', 'energy', 'valence', 'loudness_norm', 'speechiness_norm', 'acousticness_norm'];
-const radarName = ['danceability', 'liveness', 'tempo', 'energy', 'valence', 'loudness', 'speechiness', 'acousticness'];
 var n = categories.length;
-var selectedGenre = "world-music";
+// var selectedGenre = "metal";
 
 // Function to update the ridge plot
-function updateRidgePlot(selectedYear, selectedGenre) {
+function updateRidgePlot(selectedYear, new_genre) {
     d3.csv("dataset.csv").then(function(data) {
         // Filter data by year and genre
         var filteredData = data.filter(function(d) {
             var year = d.release_date.split('/')[2];
-            return d.new_genre === selectedGenre && year === selectedYear;
+            return d.new_genre === new_genre && year === selectedYear;
         });
         console.log("filteredData:",filteredData);
 
@@ -62,9 +61,10 @@ function updateRidgePlot(selectedYear, selectedGenre) {
         console.log("Y Axis Added");
 
         // Create a color scale
-        var myColor = d3.scaleSequential()
-            .domain([0, 100])
-            .interpolator(d3.interpolateViridis);
+        var myColor = d3.scaleLinear()
+        .domain([0, 100])
+        .interpolate(d3.interpolateHcl)
+        .range([d3.rgb(nonColor), d3.rgb(fulColor)])
 
         // Compute histograms for each category
         var histograms = categories.map(function(category) {
@@ -107,7 +107,7 @@ function updateRidgePlot(selectedYear, selectedGenre) {
 }
 
 // Initial plot
-updateRidgePlot("2000", "world-music"); // Default year and genre
+updateRidgePlot("2000", new_genre); // Default year and genre
 
 // Event listener for the time slider
 document.getElementById("yearSlider").addEventListener("input", function(event) {

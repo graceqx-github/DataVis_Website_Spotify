@@ -1,8 +1,9 @@
 
 // set the dimensions and margins of the graph
-var margin_area = {top: 20, right: 30, bottom: 0, left: 50},
-    width_area = 1510 - margin_area.left - margin_area.right,
-    height_area = 400 - margin_area.top - margin_area.bottom;
+var margin_area = {top: 20, right: 40, bottom: 0, left: 30},
+    // width_area = 1510 - margin_area.left - margin_area.right,
+    width_area = 900 - margin_area.left - margin_area.right,
+    height_area = 350 - margin_area.top - margin_area.bottom;
 
 // append the svg object to the body of the page
 var svgArea = d3.select("#area")

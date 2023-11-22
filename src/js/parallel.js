@@ -1,6 +1,7 @@
 
 function createParallelCoordinatesChart(dataset) {
-  const para_width = 850;
+  // const para_width = 850;
+  const para_width = 1510;
   const para_height = 400;
   const svgPara = d3.select('#parallel');
 
@@ -9,21 +10,20 @@ function createParallelCoordinatesChart(dataset) {
 
   const dimensions =  ['new_genre', 'danceability', 'liveness', 'tempo', 'energy', 'valence', 'popularity', 'speechiness_norm', 'acousticness'];
 
-  // Count the genres and sort by frequency
-  const genreCounts = new Map([...new Set(dataset.map(d => d.new_genre))].map(genre => [genre, 0]));
-  dataset.forEach(d => genreCounts.set(d.new_genre, genreCounts.get(d.new_genre) + 1));
-  const topGenres = new Set([...genreCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10).map(entry => entry[0]));
-
-  // Filter dataset to only include top 10 genres
-  const filteredDataset = dataset.filter(d => topGenres.has(d.new_genre));
-  const data = filteredDataset.map(d => dimensions.map(dimension => d[dimension]))
-    
-  // Define your own color codes here
+  const topGenres = ['world-music', 'electronic', 'rock', 'metal', 'j-pop', 'kids', 'honky-tonk', 'indie', 'soundtracks', 'reggae'];
+  const genreCounts = {};
+  topGenres.forEach(genre => genreCounts[genre] = 0);
+  dataset.forEach(d => {
+    if (topGenres.includes(d.new_genre)) {
+      genreCounts[d.new_genre]++;
+    }
+  });
+  const filteredDataset = dataset.filter(d => topGenres.includes(d.new_genre));
+  const data = filteredDataset.map(d => dimensions.map(dimension => d[dimension]));
   const colorCodes = ['#2B4561', '#8F904E', '#7B928F', '#A1CCD9', '#D7CDBB', '#E5CEC6', '#EBC1C0', '#C99E8E', '#B08166', '#502F15'];
   const colorScale = d3.scaleOrdinal()
     .domain(topGenres)
     .range(colorCodes);
-
 
   // Use scalePoint because x-axis domain is discrete
   const xScale = d3.scalePoint()

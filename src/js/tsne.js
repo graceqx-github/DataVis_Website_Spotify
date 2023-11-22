@@ -1,7 +1,7 @@
     // set the dimensions and margin_ts of the graph
     const margin_t = {top: 15, right: 20, bottom: 25, left: 70},
         width_t = 550 - margin_t.left - margin_t.right,
-        height_t = 400 - margin_t.top - margin_t.bottom;
+        height_t = 350 - margin_t.top - margin_t.bottom;
         // width_t = 500,
         // height_t =300;
     
@@ -59,7 +59,7 @@
             .transition()
             .duration(200)
             tooltip
-            .style("opacity", 0.3)
+            .style("opacity", 0.6)
             .html(d.new_genre +': '+ d.radius)
             .style("left", (event.x) + "px")
             .style("top", (event.y)/2+40 + "px")
@@ -87,7 +87,7 @@
             .attr("cy", d => y(d.mean_pca2))
             .attr("r", d => z(d.radius))
             //   .style("fill", "#69b3a2")
-            .style("opacity", "0.7")
+            .style("opacity", "0.9")
             //   .attr("stroke", "black")
             .style("fill", d => myColor(d.new_genre))
             // -3- Trigger the functions
