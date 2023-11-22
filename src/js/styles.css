@@ -10,7 +10,7 @@ body {
 h2 {
     text-align: center;
     margin-bottom: 40px;
-    color: blueviolet;
+    color: black;
 }
 
 /* tsne */
@@ -98,7 +98,7 @@ h2 {
 
 /*Slider and world map*/
 #worldMap {
-    background-color: rgb(255, 255, 255)51, 145, 145);
+    background-color: rgb(255, 255, 255);
 }
 
 .slider-container {
@@ -121,7 +121,7 @@ h2 {
     appearance: none;
     width: 25px;
     height: 25px;
-    background-image: url('images/icons8-spotify-48 (1).png');
+    background-image: url('../../production/images/icon_spotify_green.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -133,19 +133,19 @@ h2 {
 
 
 .year-slider::-webkit-slider-thumb:active { /* When the thumb is being dragged */
-    background-image: url('images/icons8-spotify-48.png');
+    background-image: url('../../production/images/icon_spotify_dark.png');
     opacity: 0.8; /* 50% transparent */
 }
 
 .year-slider::-webkit-slider-thumb:hover {
-    background-image: url('images/icons8-spotify-48.png');
+    background-image: url('../../production/images/icon_spotify_dark.png');
     opacity: 0.8; /* 50% transparent */
 }
 
 .year-slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
-    background-image: urlurl('images/icons8-spotify-48 (1).png');
+    background-image: urlurl('../../production/images/icon_spotify_green.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -155,12 +155,12 @@ h2 {
 }
 
 .year-slider::-moz-range-thumb:active { /* When the thumb is being dragged */
-    background-image: url('images/icons8-spotify-48.png');
+    background-image: url('../../production/images/icon_spotify_dark.png');
     opacity: 0.8; /* 50% transparent */
 }
 
 .year-slider::-webkit-slider-thumb:hover {
-    background-image: url('images/icons8-spotify-48.png');
+    background-image: url('../../production/images/icon_spotify_dark.png');
     opacity: 0.8; /* 50% transparent */
 }
 

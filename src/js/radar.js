@@ -28,7 +28,6 @@ for (let i = 0; i < radarDimensions.length; i++) {
         .attr("r", factor)
         .attr("class", "radar-circle");
 }
-console.error("initialize");
 // Drawing radar lines and dimension names
 radarDimensions.forEach((dim, i) => {
     const x = radarWidth / 2-20 + radarRadius * Math.cos(radarAngleSlice * i - Math.PI / 2);
@@ -49,8 +48,7 @@ radarDimensions.forEach((dim, i) => {
         .attr("text-anchor", "right")
         .attr("fill", "rgb(187, 215, 239)")
         .text(radarName[i]);
-});
-console.error("initialize");
+}); 
 // Helper function to update and draw the radar for a specific year and genre
 const drawRadarForGenre = (year, genre) => {
     // radarSvg.selectAll(".polygon-genre").remove(); // Clear existing chart
