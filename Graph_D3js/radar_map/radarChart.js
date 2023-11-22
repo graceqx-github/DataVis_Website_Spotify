@@ -1,5 +1,5 @@
 // Constants and initializations for Radar Chart
-const radarPath = '../dataSource/dataset.csv'; // Adjust the path to your dataset
+const radarPath = 'data/spotify_dataset_1_bruce.csv'; // Adjust the path to your dataset
 const radarWidth = 400;
 const radarHeight = 500;
 const radarRadius = Math.min(radarWidth, radarHeight) / 2 - 20;

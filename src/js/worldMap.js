@@ -144,7 +144,7 @@ svgKey.append("text")
     .attr("x", 50)
     .attr("y", 40)
     .attr("fill", "#000")
-    .text("Unpopular");
+    .text("0");
     
 
 svgKey.append("text")
@@ -152,4 +152,11 @@ svgKey.append("text")
     .attr("y", 40)
     .attr("fill", "#000")
     .attr("text-anchor", "end")
-    .text("Most Popular");
+    .text("1");
+
+    svgKey.append("text")
+    .attr("x", 50 + keyWidth/2)
+    .attr("y", 40)
+    .attr("fill", "#000")
+    .attr("text-anchor", "middle")
+    .text("Artists Popularity");
