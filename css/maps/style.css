@@ -154,7 +154,7 @@ body {
 .year-slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
-    background-image: urlurl('../../images/icon_spotify_green.png');
+    background-image: url('../../images/icon_spotify_green.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
