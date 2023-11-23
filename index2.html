@@ -8,12 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="images/favicon.ico" type="image/ico" />
-  <script>
-    var new_genre = "reggae"
-    var fulColor = "#502F15"
-    var midColor = '#CC7B3E'
-    var nonColor = "#E5BD9E"
-  </script>
+
   <title>Spotify Music Trend </title>
 
   <!-- Bootstrap -->
@@ -37,7 +32,12 @@
   <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
   <!-- d3js -->
   <!-- <script src="https://d3js.org/d3.v6.min.js"></script> -->
-
+  <script>
+    var new_genre = "metal"
+    var fulColor = "#306373"
+    var midColor = '#A1CCD9'
+    var nonColor = "#A9CFDB"
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -126,7 +126,7 @@
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>Reggae</h3>
+              <h3>Metal</h3>
             </div>
           </div>
 
@@ -147,7 +147,8 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-12 col-sm-12" style="text-align:center;">
+
+              <div class="col-md-12 col-sm-12  " style="text-align:center;">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Map</h2>
@@ -176,7 +177,7 @@
               </div>
             </div>
 
-            <div class="col-md-12 col-sm-12">
+            <div class="col-md-12">
               <div class="slider-container">
                 <input type="range" class="year-slider" id="yearSlider" min="2000" max="2023" value="2000" step="1">
                 <div class="slider-labels">
@@ -243,11 +244,11 @@
     <!-- <script src="../src/js/ridge.js"></script> -->
     <!-- <script src="../src/js/parallel.js"></script> -->
     <!-- <script src="../src/js/tsne.js"></script> -->
-    <script src="../src/js/ridge.js"></script>
-    <script src="../src/js/worldMap.js"></script>
-    <script src="../src/js/bubble.js"></script>
-    <script src="../src/js/radar.js"></script>
-    <script src="../src/js/parallel.js"></script>
+    <script src="./src/js/ridge.js"></script>
+    <script src="./src/js/worldMap.js"></script>
+    <script src="./src/js/bubble.js"></script>
+    <script src="./src/js/radar.js"></script>
+    <script src="./src/js/parallel.js"></script>
 
 
     <!-- <script src="../src/js/pie.js"></script> -->
